@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony & Health - Relationship Assessment</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#/home" class="logo">
+                <i class="fas fa-heart-circle-check"></i> Harmony&Health
+            </a>
+            <nav>
+                <a href="#/home" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="#/quiz"><i class="fas fa-tasks"></i> Assessment</a>
+                <a href="#/resources"><i class="fas fa-hand-holding-heart"></i> Safety Hub</a>
+                <a href="#/journal"><i class="fas fa-book"></i> Journal</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main>
+
+        <!-- 1. Home / Landing View -->
+        <section id="home-view" class="view active">
+            <div class="hero">
+                <h1>Is it Compatibility or Control?</h1>
+                <p>Evaluate your relationship's connection, compatibility, and core health index. Explore whether your partner supports your freedom or tries to restrict it.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#/quiz" class="btn btn-primary btn-large">
+                        <i class="fas fa-play"></i> Start Assessment
+                    </a>
+                    <a href="#/resources" class="btn btn-secondary btn-large">
+                        <i class="fas fa-shield-alt"></i> Safety & Support Hub
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Compatibility Metrics</h3>
+                    <p>Analyze communication, respect, mutual understanding, and how well you align on goals and life pace without pressure.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon" style="color: var(--accent-red); background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Red Flag Indicators</h3>
+                    <p>Detect early signals of possessiveness, jealousy, digital surveillance, isolation, and speed pressure such as rushed marriage plans.</p>
+                </div>
+            </div>
+
+            <div class="glass-card" style="margin-top: 2rem;">
+                <h3 style="margin-bottom: 1rem;"><i class="fas fa-user-shield" style="color: var(--accent-teal);"></i> Confidentiality & Safety First</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    This application is fully client-side. Your quiz responses, journal inputs, and safety planning checklist items are stored directly inside your browser's private storage (localStorage). No data is ever transmitted to a server.
+                </p>
+                <div class="info-bullet warning">
+                    <i class="fas fa-keyboard"></i>
+                    <span><strong>Quick Escaping:</strong> Pressing the <strong>ESC</strong> key or clicking the floating red Shield button on the bottom-right will instantly swap this page to a weather or search search-bar to ensure privacy.</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. Quiz / Assessment View -->
+        <section id="quiz-view" class="view">
+            <div class="quiz-container glass-card">
+                <div class="quiz-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2 style="font-size: 1.5rem;">Relationship Assessment</h2>
+                    <span id="quiz-progress-text" style="font-size: 0.9rem; color: var(--text-secondary);">Question 1 of 25</span>
+                </div>
+                
+                <div class="progress-bar-container">
+                    <div id="quiz-progress-bar" class="progress-bar"></div>
+                </div>
+
+                <!-- Active Question Area -->
+                <div id="quiz-question-area">
+                    <!-- Loaded dynamically via app.js -->
+                </div>
+
+                <div class="quiz-footer">
+                    <button id="prev-question-btn" class="btn btn-secondary" style="display: none;">
+                        <i class="fas fa-chevron-left"></i> Previous Question
+                    </button>
+                    <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-lock"></i> 100% Private & Local</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. Results View -->
+        <section id="results-view" class="view">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; text-align: center;">Assessment Results</h2>
+            
+            <div class="results-dashboard">
+                <!-- Gauges & Metres -->
+                <div class="gauges-container">
+                    <div class="glass-card gauge-card">
+                        <h3>General Compatibility</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Communication, connection & values</p>
+                        <div class="gauge-svg-container">
+                            <svg class="gauge-svg" width="180" height="180">
+                                <circle class="gauge-track" cx="90" cy="90" r="70"></circle>
+                                <circle class="gauge-fill" id="compat-gauge" cx="90" cy="90" r="70"></circle>
+                            </svg>
+                            <span class="gauge-value" style="color: #a74eff;">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card gauge-card">
+                        <h3>Relationship Health</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Independence, respect & safety</p>
+                        <div class="gauge-svg-container">
+                            <svg class="gauge-svg" width="180" height="180">
+                                <circle class="gauge-track" cx="90" cy="90" r="70"></circle>
+                                <circle class="gauge-fill" id="health-gauge" cx="90" cy="90" r="70"></circle>
+                            </svg>
+                            <span class="gauge-value">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Text -->
+                <div>
+                    <div id="results-verdict-banner" class="verdict-banner">
+                        <div class="verdict-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div>
+                            <h3 id="results-verdict-title">Evaluating...</h3>
+                            <p id="results-verdict-desc" style="font-size: 0.95rem; margin-top: 0.25rem;"></p>
+                        </div>
+                    </div>
+
+                    <!-- Red Flags Panel -->
+                    <div id="results-red-flags-box" class="red-flags-box" style="display: none; margin-bottom: 2rem;">
+                        <h4><i class="fas fa-flag"></i> Concerning Patterns Identified:</h4>
+                        <ul id="results-red-flags-list" class="red-flags-list">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+
+                    <!-- Recommended Action Details -->
+                    <div id="results-recommendation-details">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. Resources & Safety View -->
+        <section id="resources-view" class="view">
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h2>Safety & Resource Center</h2>
+                <p style="color: var(--text-secondary);">Find immediate help, organize a safe departure, and read guides about possessiveness and forced marriages.</p>
+                
+                <div class="tab-container">
+                    <div class="tab-nav">
+                        <button class="tab-btn active" data-tab="tab-hotlines"><i class="fas fa-phone-alt"></i> Support Lines</button>
+                        <button class="tab-btn" data-tab="tab-safety-plan"><i class="fas fa-shield-halved"></i> Exit Safety Plan</button>
+                        <button class="tab-btn" data-tab="tab-education"><i class="fas fa-book-open"></i> Recognizing Abuse</button>
+                    </div>
+
+                    <!-- Tab 1: Support Hotlines -->
+                    <div id="tab-hotlines" class="tab-content active">
+                        <div class="grid-2">
+                            <div class="hotline-card">
+                                <div class="hotline-header">
+                                    <span class="hotline-title">Love Is Respect</span>
+                                    <span class="hotline-badge">Youth & Relationships</span>
+                                </div>
+                                <p class="hotline-info">Highly trained peer advocates supporting teenagers and young adults dealing with toxic or possessive relationships.</p>
+                                <div class="hotline-contact">
+                                    <a href="tel:18663319474" class="hotline-btn hotline-btn-call"><i class="fas fa-phone"></i> Call 1.866.331.9474</a>
+                                    <a href="https://www.loveisrespect.org" target="_blank" rel="noopener" class="hotline-btn hotline-btn-chat"><i class="fas fa-comments"></i> Chat Online</a>
+                                </div>
+                            </div>
+
+                            <div class="hotline-card">
+                                <div class="hotline-header">
+                                    <span class="hotline-title">National DV Hotline</span>
+                                    <span class="hotline-badge">24/7 Confidential</span>
+                                </div>
+                                <p class="hotline-info">Free, confidential support for anyone experiencing control, surveillance, threats, or relationship violence.</p>
+                                <div class="hotline-contact">
+                                    <a href="tel:18007997233" class="hotline-btn hotline-btn-call"><i class="fas fa-phone"></i> Call 1.800.799.7233</a>
+                                    <a href="https://www.thehotline.org" target="_blank" rel="noopener" class="hotline-btn hotline-btn-chat"><i class="fas fa-comments"></i> Chat Live</a>
+                                </div>
+                            </div>
+
+                            <div class="hotline-card">
+                                <div class="hotline-header">
+                                    <span class="hotline-title">Prevent Forced Marriage</span>
+                                    <span class="hotline-badge">Forced Marriage Support</span>
+                                </div>
+                                <p class="hotline-info">Provides assistance, safety planning, and advice to individuals in the US or abroad who are facing forced marriage pressure.</p>
+                                <div class="hotline-contact">
+                                    <a href="https://www.preventforcedmarriage.org" target="_blank" rel="noopener" class="hotline-btn hotline-btn-chat" style="flex: 2; background: var(--gradient-love); color: white; border: none;"><i class="fas fa-globe"></i> Visit Website & Seek Help</a>
+                                </div>
+                            </div>
+
+                            <div class="hotline-card">
+                                <div class="hotline-header">
+                                    <span class="hotline-title">Global Help Directory</span>
+                                    <span class="hotline-badge">International</span>
+                                </div>
+                                <p class="hotline-info">Find support services, helplines, and shelters outside the US. Select your country for localized contact points.</p>
+                                <div class="hotline-contact">
+                                    <a href="https://www.findahelpline.com" target="_blank" rel="noopener" class="hotline-btn hotline-btn-chat" style="flex: 2;"><i class="fas fa-search-location"></i> Find A Helpline Locally</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Exit Safety Plan -->
+                    <div id="tab-safety-plan" class="tab-content">
+                        <h3 style="margin-bottom: 1rem; color: var(--accent-teal);">Interactive Departure Checklist</h3>
+                        <p style="margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--text-secondary);">
+                            If you decide to leave a highly possessive or controlling partner, do not let them know your plans. Complete this checklist step-by-step. Checking items stores them in your browser for next time.
+                        </p>
+                        
+                        <div class="safety-plan-checklist">
+                            <label class="safety-item">
+                                <input type="checkbox" id="safety-item-1">
+                                <div class="safety-item-text">
+                                    <div class="safety-item-title">Pack an Emergency Bag</div>
+                                    <div class="safety-item-desc">Keep change of clothes, spare car/house keys, cash, and copies of important documents at a trusted friend's house.</div>
+                                </div>
+                            </label>
+
+                            <label class="safety-item">
+                                <input type="checkbox" id="safety-item-2">
+                                <div class="safety-item-text">
+                                    <div class="safety-item-title">Gather Important Documentation</div>
+                                    <div class="safety-item-desc">Secure physical or digital copies of ID card, birth certificate, passport, bank details, and medical logs. Store them safely.</div>
+                                </div>
+                            </label>
+
+                            <label class="safety-item">
+                                <input type="checkbox" id="safety-item-3">
+                                <div class="safety-item-text">
+                                    <div class="safety-item-title">Establish Trusted Contacts</div>
+                                    <div class="safety-item-desc">Identify 2-3 people you trust completely (family, close friends, neighbors). Agree on a code word to send if you need immediate rescue.</div>
+                                </div>
+                            </label>
+
+                            <label class="safety-item">
+                                <input type="checkbox" id="safety-item-4">
+                                <div class="safety-item-text">
+                                    <div class="safety-item-title">Secure Digital Accounts</div>
+                                    <div class="safety-item-desc">Change passwords to email, banking, and socials. Go to device settings and disable active location sharing/GPS tracking (Find My, Maps).</div>
+                                </div>
+                            </label>
+
+                            <label class="safety-item">
+                                <input type="checkbox" id="safety-item-5">
+                                <div class="safety-item-text">
+                                    <div class="safety-item-title">Establish a Safe Place to Go</div>
+                                    <div class="safety-item-desc">Plan exactly where you will stay immediately after leaving (e.g., a friend\'s parent\'s home, a relative\'s address unknown to your boyfriend, or a shelter).</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Recognizing Abuse -->
+                    <div id="tab-education" class="tab-content">
+                        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                            <div>
+                                <h3 style="color: #ff4d80; margin-bottom: 0.5rem;"><i class="fas fa-fingerprint"></i> What is Coercive Control?</h3>
+                                <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                                    Coercive control is a pattern of acts of threat, humiliation, intimidation, or abuse used by one person to dominate their partner. It includes monitoring your phone, telling you what to wear, isolating you from friends, controlling your money, and limiting your choices.
+                                </p>
+                            </div>
+
+                            <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">
+                                <h3 style="color: #ff4d80; margin-bottom: 0.5rem;"><i class="fas fa-ring"></i> Forced Marriage vs. Arranged Marriage</h3>
+                                <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                                    An **arranged marriage** is where families help introduce partners, but both individuals have the complete, unpressured right to say **no** at any stage. 
+                                    A **forced marriage** is a union where one or both people do not consent or feel pressured, guilted, threatened, or emotionally blackmailed into agreeing. Forced marriage is a violation of human rights and a serious form of relationship abuse.
+                                </p>
+                            </div>
+
+                            <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">
+                                <h3 style="color: #ff4d80; margin-bottom: 0.5rem;"><i class="fas fa-heart-crack"></i> The Cycle of Apologies ("Love-Bombing")</h3>
+                                <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                                    Controlling partners often alternate between periods of extreme jealousy or anger and intense affection, gift-giving, and apologies (love-bombing). They may say "I only check your phone because I love you so much" or "I want to marry you right away because you're my soulmate." Recognize that these statements are often used to override your doubts and maintain control.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. Relationship Journal View -->
+        <section id="journal-view" class="view">
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h2>Relationship Health Log</h2>
+                <p style="color: var(--text-secondary);">Keep an anonymous diary to log daily interactions. Over time, look back to evaluate if things are improving or if control is escalating.</p>
+            </div>
+
+            <div class="journal-layout">
+                <!-- Left: Form -->
+                <div class="glass-card">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-edit"></i> Log Today's Entry</h3>
+                    <form id="journal-form-el" class="journal-form">
+                        <div class="form-group">
+                            <label for="journal-date">Date</label>
+                            <input type="date" id="journal-date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="journal-mood">Overall Mood Today</label>
+                            <select id="journal-mood" required>
+                                <option value="5">Great (Peaceful & Happy)</option>
+                                <option value="4">Good (Calm & Connected)</option>
+                                <option value="3" selected>Neutral (Uneventful)</option>
+                                <option value="2">Bad (Tense / Argumentative)</option>
+                                <option value="1">Terrible (Scared / Pressured / Upset)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="journal-freedom">Freedom & Boundaries Today</label>
+                            <select id="journal-freedom" required>
+                                <option value="5">Full Freedom (Spent time with friends/hobbies freely)</option>
+                                <option value="4">Respectful (Set boundaries, partner listened well)</option>
+                                <option value="3" selected>Neutral (No specific boundary issues)</option>
+                                <option value="2">Possessive (Partner got jealous / questioned contacts)</option>
+                                <option value="1">Highly Controlling (Checked phone / forced choices / anger)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="journal-notes">What happened today? (Notes)</label>
+                            <textarea id="journal-notes" rows="4" placeholder="Briefly write down what occurred, how they reacted, and how you felt..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Save Entry</button>
+                    </form>
+                </div>
+
+                <!-- Right: Timeline logs -->
+                <div class="glass-card">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-history"></i> Your Log Timeline</h3>
+                    <div id="journal-timeline-list" class="journal-timeline">
+                        <!-- Loaded dynamically via journal.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <span>&copy; 2026 Harmony&Health. Confidential relationship tools.</span>
+            <span style="font-size: 0.85rem;"><i class="fas fa-lock"></i> No server data transfer. Operates purely offline.</span>
+        </div>
+    </footer>
+
+    <!-- Floating Quick Hide Button -->
+    <button class="quick-hide-btn" title="Quick escape (Hide page instantly) - Or press ESC key">
+        <i class="fas fa-shield-alt"></i>
+        <span>Quick Hide</span>
+    </button>
+
+    <!-- Custom Scripts -->
+    <script src="app.js"></script>
+    <script src="journal.js"></script>
+    
+    <!-- Tab switching logic inside index.html for simplicity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Toggle active classes on buttons
+                    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Toggle active classes on content divs
+                    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                    const activeContent = document.getElementById(tabId);
+                    if (activeContent) {
+                        activeContent.classList.add('active');
+                    }
+                });
+            });
+
+            // Safe Checklist State Saving
+            const checklistItems = ['safety-item-1', 'safety-item-2', 'safety-item-3', 'safety-item-4', 'safety-item-5'];
+            checklistItems.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    // Load saved state
+                    const saved = localStorage.getItem(`compat_checker_safety_${id}`);
+                    if (saved === 'true') {
+                        element.checked = true;
+                    }
+
+                    // Save state on click
+                    element.addEventListener('change', () => {
+                        localStorage.setItem(`compat_checker_safety_${id}`, element.checked);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
